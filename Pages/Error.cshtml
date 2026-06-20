@@ -1,0 +1,15 @@
+@page
+@model JiuJitsuAcademy.Pages.ErrorModel
+@{
+    ViewData["Title"] = "Erro";
+}
+
+<div class="success-card">
+    <h2>Ops! Algo deu errado.</h2>
+    <p>Ocorreu um erro inesperado ao processar sua solicitacao.</p>
+    @if (Model.ShowRequestId)
+    {
+        <p><strong>Request ID:</strong> <code>@Model.RequestId</code></p>
+    }
+    <a class="btn-enviar" href="/">Voltar ao formulario</a>
+</div>

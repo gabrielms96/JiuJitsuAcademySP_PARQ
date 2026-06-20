@@ -1,0 +1,66 @@
+## Build / publish
+bin/
+obj/
+out/
+publish/
+deploy.zip
+*.zip
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.csproj.user
+
+## Visual Studio / Rider / VS Code
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.DotSettings.user
+
+## ASP.NET Core / .NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+*.nupkg
+*.snupkg
+**/packages/*
+!**/packages/build/
+*.nuget.props
+*.nuget.targets
+
+## Secrets e configuracao local (NAO commitar credenciais)
+secrets.json
+appsettings.Local.json
+appsettings.*.Local.json
+
+## Logs e diagnostico
+*.log
+logs/
+*.tlog
+*.cache
+
+## Testes e cobertura
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+## OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+## Uploads temporarios
+wwwroot/uploads/
+
+## Azure / deploy local
+.azure/

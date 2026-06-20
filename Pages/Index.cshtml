@@ -1,0 +1,322 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Dados para aula Introdutória e PARQ";
+    var estadoCivil = MatriculaFormModel.Opcoes.EstadoCivil;
+    var jaTreinou = MatriculaFormModel.Opcoes.JaTreinou;
+    var graduacao = MatriculaFormModel.Opcoes.Graduacao;
+    var simNao = MatriculaFormModel.Opcoes.SimNao;
+    var declaracao = MatriculaFormModel.Opcoes.Declaracao;
+}
+
+<div class="form-intro">
+    <p>
+        Bem-vindo(a)! Preencha corretamente sua ficha de Dados para aula Introdutória e PARQ. Os campos marcados com
+        <span class="req">*</span> sao obrigatorios. Ao final, confirme a verificacao de seguranca e envie.
+    </p>
+</div>
+
+<div asp-validation-summary="ModelOnly" class="alert alert-danger validation-summary" role="alert"></div>
+
+<form method="post" enctype="multipart/form-data" id="parqForm" novalidate>
+    <section class="form-card">
+        <h2 class="form-card-title">PAR-Q</h2>
+        <div class="row g-3">
+            <p><i>Physical Activity Readiness Questionnarie</i></p>
+            <p><i>QUESTIONÁRIO DE PRONTIDÃO PARA ATIVIDADE FÍSICA</i></p>
+            <p>
+                <b>
+                    Este
+                    questionário tem objetivo de identificar a necessidade de avaliação
+                    clínica e médica antes do início da atividade física. Caso você
+                    marque um SIM, é fortemente sugerida a realização da avaliação
+                    clínica e médica. Contudo, qualquer pessoa pode participar de uma
+                    atividade física de esforço moderado, respeitando as restrições
+                    médicas.
+                </b>
+            </p>
+            <p>
+                O PAR-Q foi elaborado para auxiliar você a se auto-ajudar. Os
+                exercícios praticados regularmente estão associados a muitos
+                benefícios de saúde. Completar o PAR-Q representa o primeiro passo
+                importante a ser tomado, principalmente se você está interessado em
+                incluir a atividade física com maior frequência e regularidade no
+                seu dia a dia.
+            </p>
+
+            <p>
+                O bom senso é o seu melhor guia ao responder estas questões. Por
+                favor, leia atentamente cada questão e marque SIM ou NÃO.
+            </p>
+        </div>
+    </section>
+
+    <section class="form-card">
+        <h2 class="form-card-title">Dados Pessoais</h2>
+        <div class="row g-3">
+            <div class="col-md-8">
+                <label asp-for="Form.NomeCompleto" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.NomeCompleto" class="form-control" autocomplete="name" />
+                <span asp-validation-for="Form.NomeCompleto" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Form.DataNascimento" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.DataNascimento" type="date" class="form-control" />
+                <span asp-validation-for="Form.DataNascimento" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Email" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.Email" type="email" class="form-control" autocomplete="email" />
+                <span asp-validation-for="Form.Email" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Cpf" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.Cpf" class="form-control" placeholder="000.000.000-00" />
+                <span asp-validation-for="Form.Cpf" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label asp-for="Form.EnderecoCompleto" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.EnderecoCompleto" class="form-control" autocomplete="street-address" />
+                <span asp-validation-for="Form.EnderecoCompleto" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.EstadoCivil" class="form-label"></label> <span class="req">*</span>
+                <select asp-for="Form.EstadoCivil" class="form-select">
+                    <option value="">Selecione...</option>
+                    @foreach (var op in estadoCivil)
+                    {
+                        <option value="@op">@op</option>
+                    }
+                </select>
+                <span asp-validation-for="Form.EstadoCivil" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Profissao" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.Profissao" class="form-control" />
+                <span asp-validation-for="Form.Profissao" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label asp-for="Form.Filhos" class="form-label"></label>
+                <input asp-for="Form.Filhos" class="form-control" placeholder="Ex.: 2 filhos, 5 e 8 anos" />
+                <span asp-validation-for="Form.Filhos" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Whatsapp" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.Whatsapp" class="form-control" placeholder="(11) 90000-0000" autocomplete="tel" />
+                <span asp-validation-for="Form.Whatsapp" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.ContatoUrgencia" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.ContatoUrgencia" class="form-control" placeholder="Nome e telefone" />
+                <span asp-validation-for="Form.ContatoUrgencia" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.ConvenioMedico" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.ConvenioMedico" class="form-control" placeholder="Ex.: Nao / Unimed" />
+                <span asp-validation-for="Form.ConvenioMedico" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.EsportesPraticados" class="form-label"></label> <span class="req">*</span>
+                <input asp-for="Form.EsportesPraticados" class="form-control" />
+                <span asp-validation-for="Form.EsportesPraticados" class="text-danger"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-card">
+        <h2 class="form-card-title">Confirmacao Facial</h2>
+        <p class="form-card-hint">
+            Tire uma selfie do seu rosto e envie para confirmacao de identidade.
+            Formatos aceitos: JPG, PNG ou WEBP (max. 5 MB). <span class="req">*</span>
+        </p>
+        <input asp-for="Form.Selfie" type="file" class="form-control" accept="image/png,image/jpeg,image/webp" capture="user" />
+        <span asp-validation-for="Form.Selfie" class="text-danger"></span>
+        <img id="selfiePreview" class="selfie-preview d-none" alt="Pre-visualizacao da selfie" />
+    </section>
+
+    <section class="form-card">
+        <h2 class="form-card-title">Jiu-Jitsu</h2>
+        <div class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Ja treinou Jiu-Jitsu antes?</label> <span class="req">*</span>
+                <div class="option-group">
+                    @foreach (var op in jaTreinou)
+                    {
+                        <label class="option-pill">
+                            <input type="radio" asp-for="Form.JaTreinou" value="@op" /> <span>@op</span>
+                        </label>
+                    }
+                </div>
+                <span asp-validation-for="Form.JaTreinou" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.Graduacao" class="form-label"></label>
+                <select asp-for="Form.Graduacao" class="form-select">
+                    <option value="">Nao se aplica</option>
+                    @foreach (var op in graduacao)
+                    {
+                        <option value="@op">@op</option>
+                    }
+                </select>
+                <span asp-validation-for="Form.Graduacao" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.EquipesAnteriores" class="form-label"></label>
+                <input asp-for="Form.EquipesAnteriores" class="form-control" />
+                <span asp-validation-for="Form.EquipesAnteriores" class="text-danger"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-card">
+        <h2 class="form-card-title">PAR-Q &ndash; Questionario de Prontidao para Atividade Fisica</h2>
+        <p class="form-card-hint">Responda com sinceridade. Todas as perguntas sao obrigatorias. <span class="req">*</span></p>
+
+        @{
+            var parqPerguntas = new (string Field, string Texto)[]
+            {
+                ("Form.ParQ1", "1. Alguma vez seu médico disse que você possui algum problema cardíaco e recomendou que você só praticasse atividade física sob prescrição médica?"),
+                ("Form.ParQ2", "2. Você sente dor no tórax quando pratica uma atividade física?"),
+                ("Form.ParQ3", "3. No último mês você sentiu dor torácica quando não estava praticando atividade física??"),
+                ("Form.ParQ4", "4. Você perdeu o equilíbrio em virtude de tonturas ou perdeu a consciência quando estava praticando atividade física?"),
+                ("Form.ParQ5", "5. Você tem algum problema ósseo ou articular que poderia ser agravado com a prática de atividades físicas?"),
+                ("Form.ParQ6", "6. Seu médico já recomendou o uso de medicamentos para controle da sua pressão arterial ou condição cardiovascular?"),
+                ("Form.ParQ7", "7. Você tem conhecimento de alguma outra razão física que o impeça de participar de atividades físicas?"),
+            };
+        }
+
+        @foreach (var (field, texto) in parqPerguntas)
+        {
+            <div class="parq-item">
+                <p class="parq-text">@texto</p>
+                <div class="option-group">
+                    @foreach (var op in simNao)
+                    {
+                        <label class="option-pill option-pill-sm">
+                            <input type="radio" name="@field" value="@op" /> <span>@op</span>
+                        </label>
+                    }
+                </div>
+                <span class="text-danger field-validation-valid" data-valmsg-for="@field" data-valmsg-replace="true"></span>
+            </div>
+        }
+    </section>
+
+    <section class="form-card">
+        <h2 class="form-card-title">Declaracao de Responsabilidade</h2>
+        <p class="termo-texto">
+            Declaro que as informações prestadas são verdadeiras,
+            estou ciente das recomendações médicas para prática de atividade física
+            e autorizo a Jiu-Jitsu Academy SP a armazenar estes dados para fins de segurança e acompanhamento esportivo.
+        </p>
+        <div class="option-group">
+            @foreach (var op in declaracao)
+            {
+                <label class="option-pill">
+                    <input type="radio" asp-for="Form.DeclaracaoResponsabilidade" value="@op" /> <span>@op</span>
+                </label>
+            }
+        </div>
+        <span asp-validation-for="Form.DeclaracaoResponsabilidade" class="text-danger"></span>
+    </section>
+
+    <section class="form-card">
+        <h2 class="form-card-title">Responsável (apenas se menor de 18 anos)</h2>
+        <div class="row g-3">
+            <div class="col-md-5">
+                <label asp-for="Form.ResponsavelNome" class="form-label"></label>
+                <input asp-for="Form.ResponsavelNome" class="form-control" />
+            </div>
+            <div class="col-md-4">
+                <label asp-for="Form.ResponsavelCpf" class="form-label"></label>
+                <input asp-for="Form.ResponsavelCpf" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                <label asp-for="Form.ResponsavelParentesco" class="form-label"></label>
+                <input asp-for="Form.ResponsavelParentesco" class="form-control" />
+            </div>
+        </div>
+    </section>
+
+    <section class="form-card">
+        <h2 class="form-card-title">TERMO DE RESPONSABILIDADE PARA PRÁTICA DE ATIVIDADE FÍSICA</h2>
+        <p class="termo-texto">
+            Estou ciente que é recomendável conversar com um médico antes de aumentar meu nível atual
+            de atividade física, por ter respondido “SIM” a uma ou mais perguntas do
+            “Questionário de Prontidão para Atividade Física” (PAR-Q).
+            <br />
+            <br />
+            Assumo plena responsabilidade por qualquer atividade física praticada sem o atendimento a essa recomendação.
+        </p>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label asp-for="Form.TermoNomeParticipante" class="form-label"></label>
+                <input asp-for="Form.TermoNomeParticipante" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label asp-for="Form.TermoNomeResponsavel" class="form-label"></label>
+                <input asp-for="Form.TermoNomeResponsavel" class="form-control" />
+            </div>
+        </div>
+    </section>
+
+    <div class="submit-area">
+        @if (Model.RecaptchaEnabled)
+        {
+            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
+        }
+        <button type="submit" class="btn-enviar" id="btnEnviar">Enviar</button>
+        <p class="submit-hint">Seus dados serão enviados com segurança para jiujitsuacademy@gmail.com</p>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@4.0.0/dist/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        // Pre-visualizacao da selfie
+        (function () {
+            const input = document.getElementById('Form_Selfie');
+            const preview = document.getElementById('selfiePreview');
+            if (input) {
+                input.addEventListener('change', function () {
+                    const file = input.files && input.files[0];
+                    if (file) {
+                        preview.src = URL.createObjectURL(file);
+                        preview.classList.remove('d-none');
+                    } else {
+                        preview.classList.add('d-none');
+                    }
+                });
+            }
+        })();
+    </script>
+
+    @if (Model.RecaptchaEnabled)
+    {
+        <script src="https://www.google.com/recaptcha/api.js?render=@Model.RecaptchaSiteKey"></script>
+        <script>
+            (function () {
+                const form = document.getElementById('parqForm');
+                const btn = document.getElementById('btnEnviar');
+                form.addEventListener('submit', function (e) {
+                    const tokenField = document.getElementById('g-recaptcha-response');
+                    if (tokenField.value) { return; } // ja resolvido
+                    e.preventDefault();
+                    if (typeof grecaptcha === 'undefined') { form.submit(); return; }
+                    btn.disabled = true;
+                    grecaptcha.ready(function () {
+                        grecaptcha.execute('@Model.RecaptchaSiteKey', { action: 'aula_introduatoria_parq' })
+                            .then(function (token) {
+                                tokenField.value = token;
+                                form.submit();
+                            })
+                            .catch(function () { btn.disabled = false; form.submit(); });
+                    });
+                });
+            })();
+        </script>
+    }
+}
