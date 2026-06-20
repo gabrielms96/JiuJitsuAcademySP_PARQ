@@ -8,7 +8,7 @@ on:
 
 env:
   # Altere se o nome do seu App Service no Azure for diferente
-  AZURE_WEBAPP_NAME: jiujitsu-academy-form
+  AZURE_WEBAPP_NAME: JiuJitsuAcademySpParq
   DOTNET_VERSION: '9.0.x'
 
 jobs:
