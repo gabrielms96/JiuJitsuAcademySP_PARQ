@@ -71,13 +71,58 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="Form.Cpf" class="form-label"></label> <span class="req">*</span>
-                <input asp-for="Form.Cpf" class="form-control" placeholder="000.000.000-00" />
+                <input asp-for="Form.Cpf" class="form-control" placeholder="000.000.000-00"
+                       data-mask="cpf" maxlength="14" autocomplete="off"
+                       data-val-cpfbr="Informe um CPF válido." />
                 <span asp-validation-for="Form.Cpf" class="text-danger"></span>
             </div>
             <div class="col-12">
-                <label asp-for="Form.EnderecoCompleto" class="form-label"></label> <span class="req">*</span>
-                <input asp-for="Form.EnderecoCompleto" class="form-control" autocomplete="street-address" />
-                <span asp-validation-for="Form.EnderecoCompleto" class="text-danger"></span>
+                <fieldset class="address-fieldset">
+                    <legend class="form-label mb-2">Endereço <span class="req">*</span></legend>
+                    <p class="form-card-hint mb-3">Informe o CEP primeiro. Rua, bairro, cidade e estado serão preenchidos automaticamente.</p>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label asp-for="Form.Cep" class="form-label"></label> <span class="req">*</span>
+                            <input asp-for="Form.Cep" class="form-control" placeholder="00000-000"
+                                   inputmode="numeric" maxlength="9" autocomplete="postal-code"
+                                   data-cep-valid="false" />
+                            <span id="cepStatus" class="cep-status" role="status" aria-live="polite"></span>
+                            <span asp-validation-for="Form.Cep" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div id="addressFields" class="row g-3 mt-1 d-none" aria-hidden="true">
+                        <div class="col-md-8">
+                            <label asp-for="Form.Logradouro" class="form-label"></label> <span class="req">*</span>
+                            <input asp-for="Form.Logradouro" class="form-control field-readonly" readonly />
+                            <span asp-validation-for="Form.Logradouro" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Form.Numero" class="form-label"></label> <span class="req">*</span>
+                            <input asp-for="Form.Numero" class="form-control" placeholder="Ex.: 570" inputmode="numeric" />
+                            <span asp-validation-for="Form.Numero" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Form.Complemento" class="form-label"></label>
+                            <input asp-for="Form.Complemento" class="form-control" placeholder="Apto, bloco, etc." />
+                            <span asp-validation-for="Form.Complemento" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Form.Bairro" class="form-label"></label> <span class="req">*</span>
+                            <input asp-for="Form.Bairro" class="form-control field-readonly" readonly />
+                            <span asp-validation-for="Form.Bairro" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-8">
+                            <label asp-for="Form.Cidade" class="form-label"></label> <span class="req">*</span>
+                            <input asp-for="Form.Cidade" class="form-control field-readonly" readonly />
+                            <span asp-validation-for="Form.Cidade" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Form.Estado" class="form-label"></label> <span class="req">*</span>
+                            <input asp-for="Form.Estado" class="form-control field-readonly" readonly maxlength="2" />
+                            <span asp-validation-for="Form.Estado" class="text-danger"></span>
+                        </div>
+                    </div>
+                </fieldset>
             </div>
             <div class="col-md-6">
                 <label asp-for="Form.EstadoCivil" class="form-label"></label> <span class="req">*</span>
@@ -124,9 +169,9 @@
     </section>
 
     <section class="form-card">
-        <h2 class="form-card-title">Confirmacao Facial</h2>
+        <h2 class="form-card-title">Confirmação Facial</h2>
         <p class="form-card-hint">
-            Tire uma selfie do seu rosto e envie para confirmacao de identidade.
+            Tire uma selfie do seu rosto e envie para confirmação de identidade.
             Formatos aceitos: JPG, PNG ou WEBP (max. 5 MB). <span class="req">*</span>
         </p>
         <input asp-for="Form.Selfie" type="file" class="form-control" accept="image/png,image/jpeg,image/webp" capture="user" />
@@ -169,7 +214,7 @@
     </section>
 
     <section class="form-card">
-        <h2 class="form-card-title">PAR-Q &ndash; Questionario de Prontidao para Atividade Fisica</h2>
+        <h2 class="form-card-title">PAR-Q | Questionário de Prontidão para Atividade Física</h2>
         <p class="form-card-hint">Responda com sinceridade. Todas as perguntas sao obrigatorias. <span class="req">*</span></p>
 
         @{
@@ -203,7 +248,7 @@
     </section>
 
     <section class="form-card">
-        <h2 class="form-card-title">Declaracao de Responsabilidade</h2>
+        <h2 class="form-card-title">Declaração de Responsabilidade</h2>
         <p class="termo-texto">
             Declaro que as informações prestadas são verdadeiras,
             estou ciente das recomendações médicas para prática de atividade física
@@ -229,7 +274,9 @@
             </div>
             <div class="col-md-4">
                 <label asp-for="Form.ResponsavelCpf" class="form-label"></label>
-                <input asp-for="Form.ResponsavelCpf" class="form-control" />
+                <input asp-for="Form.ResponsavelCpf" class="form-control" placeholder="000.000.000-00"
+                       data-mask="cpf" maxlength="14" autocomplete="off"
+                       data-val-cpfbr="Informe um CPF válido." />
             </div>
             <div class="col-md-3">
                 <label asp-for="Form.ResponsavelParentesco" class="form-label"></label>
@@ -266,6 +313,16 @@
             <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
         }
         <button type="submit" class="btn-enviar" id="btnEnviar">Enviar</button>
+        @if (Model.RecaptchaEnabled)
+        {
+            <p class="recaptcha-notice">
+                Este site é protegido pelo reCAPTCHA.
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacidade</a>
+                e
+                <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Termos</a>
+                do Google se aplicam.
+            </p>
+        }
         <p class="submit-hint">Seus dados serão enviados com segurança para jiujitsuacademy@gmail.com</p>
     </div>
 </form>
@@ -274,6 +331,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.21.0/dist/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation-unobtrusive@4.0.0/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/js/form-validations.js" asp-append-version="true"></script>
 
     <script>
         // Pre-visualizacao da selfie
@@ -303,7 +361,12 @@
                 const btn = document.getElementById('btnEnviar');
                 form.addEventListener('submit', function (e) {
                     const tokenField = document.getElementById('g-recaptcha-response');
-                    if (tokenField.value) { return; } // ja resolvido
+                    if (tokenField.value) { return; }
+
+                    if (typeof $ !== 'undefined' && !$(form).valid()) {
+                        return;
+                    }
+
                     e.preventDefault();
                     if (typeof grecaptcha === 'undefined') { form.submit(); return; }
                     btn.disabled = true;
@@ -313,7 +376,7 @@
                                 tokenField.value = token;
                                 form.submit();
                             })
-                            .catch(function () { btn.disabled = false; form.submit(); });
+                            .catch(function () { btn.disabled = false; });
                     });
                 });
             })();

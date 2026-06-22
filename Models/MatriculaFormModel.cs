@@ -26,13 +26,46 @@ public class MatriculaFormModel
     [Display(Name = "Data de Nascimento")]
     public DateTime? DataNascimento { get; set; }
 
-    [Required(ErrorMessage = "Informe o endereço completo.")]
-    [StringLength(250)]
+    [Required(ErrorMessage = "Informe o CEP.")]
+    [StringLength(9, MinimumLength = 8, ErrorMessage = "Informe um CEP válido.")]
+    [Display(Name = "CEP")]
+    public string Cep { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Informe o endereço.")]
+    [StringLength(200)]
+    [Display(Name = "Endereço")]
+    public string Logradouro { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Informe o número.")]
+    [StringLength(20)]
+    [Display(Name = "Número")]
+    public string Numero { get; set; } = string.Empty;
+
+    [StringLength(80)]
+    [Display(Name = "Complemento")]
+    public string? Complemento { get; set; }
+
+    [Required(ErrorMessage = "Informe o bairro.")]
+    [StringLength(100)]
+    [Display(Name = "Bairro")]
+    public string Bairro { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Informe a cidade.")]
+    [StringLength(100)]
+    [Display(Name = "Cidade")]
+    public string Cidade { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Informe o estado.")]
+    [StringLength(2, MinimumLength = 2, ErrorMessage = "Informe a UF.")]
+    [Display(Name = "Estado")]
+    public string Estado { get; set; } = string.Empty;
+
+    /// <summary>Montado no envio a partir dos campos estruturados (e-mail legado).</summary>
     [Display(Name = "Endereço Completo")]
     public string EnderecoCompleto { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Informe o CPF.")]
-    [StringLength(14, MinimumLength = 11, ErrorMessage = "CPF inválido.")]
+    [StringLength(14, MinimumLength = 14, ErrorMessage = "CPF inválido.")]
     [Display(Name = "CPF")]
     public string Cpf { get; set; } = string.Empty;
 
@@ -164,5 +197,21 @@ public class MatriculaFormModel
         public static readonly string[] SimNao = { "Sim", "Não" };
 
         public static readonly string[] Declaracao = { "Concordo", "Não Concordo" };
+    }
+
+    public string MontarEnderecoCompleto()
+    {
+        var logradouro = (Logradouro ?? string.Empty).Trim();
+        var numero = (Numero ?? string.Empty).Trim();
+        var bairro = (Bairro ?? string.Empty).Trim();
+        var cidade = (Cidade ?? string.Empty).Trim();
+        var estado = (Estado ?? string.Empty).Trim();
+        var cep = (Cep ?? string.Empty).Trim();
+
+        if (string.IsNullOrEmpty(logradouro))
+            return string.Empty;
+
+        var complemento = string.IsNullOrWhiteSpace(Complemento) ? string.Empty : $" - {Complemento.Trim()}";
+        return $"{logradouro}, {numero}{complemento} - {bairro}, {cidade}/{estado} - CEP {cep}";
     }
 }

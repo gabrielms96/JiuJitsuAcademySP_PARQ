@@ -289,6 +289,22 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: 12px;
 }
 
+.recaptcha-notice {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    margin-top: 14px;
+    line-height: 1.5;
+}
+
+.recaptcha-notice a {
+    color: var(--text-muted);
+    text-decoration: underline;
+}
+
+.recaptcha-notice a:hover {
+    color: var(--text);
+}
+
 /* ---------- Validation ---------- */
 .text-danger {
     color: #ff6b6b !important;
@@ -307,6 +323,44 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .validation-summary:empty,
 .validation-summary ul:empty {
     display: none;
+}
+
+/* ---------- Endereco / CEP ---------- */
+.address-fieldset {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+.address-fieldset legend {
+    float: none;
+    width: auto;
+    padding: 0;
+}
+
+.field-readonly {
+    background-color: #161616 !important;
+    color: var(--text-muted) !important;
+    cursor: default;
+}
+
+.cep-status {
+    display: block;
+    font-size: 0.82rem;
+    margin-top: 6px;
+    min-height: 1.2em;
+}
+
+.cep-status--loading {
+    color: var(--text-muted);
+}
+
+.cep-status--success {
+    color: #7dcea0;
+}
+
+.cep-status--error {
+    color: #ff6b6b;
 }
 
 /* ---------- Success / Error ---------- */

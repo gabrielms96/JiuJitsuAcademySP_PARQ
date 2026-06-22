@@ -69,7 +69,7 @@ public class EmailService : IEmailService
             }
         }
 
-        _logger.LogInformation("Dados para aula introdutoria e PAR-Q enviados por e-mail (aluno: {Nome}).",
+        _logger.LogInformation("Dados para aula introdutória e PAR-Q enviados por e-mail (aluno: {Nome}).",
             form.NomeCompleto);
     }
 
@@ -89,40 +89,47 @@ public class EmailService : IEmailService
         Linha(sb, "Nome Completo", f.NomeCompleto);
         Linha(sb, "E-mail", f.Email);
         Linha(sb, "Data de Nascimento", f.DataNascimento?.ToString("dd/MM/yyyy"));
-        Linha(sb, "Endereco Completo", f.EnderecoCompleto);
+        Linha(sb, "CEP", f.Cep);
+        Linha(sb, "Endereço", f.Logradouro);
+        Linha(sb, "Número", f.Numero);
+        Linha(sb, "Complemento", f.Complemento);
+        Linha(sb, "Bairro", f.Bairro);
+        Linha(sb, "Cidade", f.Cidade);
+        Linha(sb, "Estado", f.Estado);
+        Linha(sb, "Endereço Completo", f.EnderecoCompleto);
         Linha(sb, "CPF", f.Cpf);
         Linha(sb, "Estado Civil", f.EstadoCivil);
-        Linha(sb, "Profissao", f.Profissao);
+        Linha(sb, "Profissão", f.Profissao);
         Linha(sb, "Filhos", f.Filhos);
         Linha(sb, "WhatsApp", f.Whatsapp);
-        Linha(sb, "Contato para Urgencia", f.ContatoUrgencia);
-        Linha(sb, "Convenio Medico", f.ConvenioMedico);
-        Linha(sb, "Esportes ja praticados", f.EsportesPraticados);
+        Linha(sb, "Contato para Urgência", f.ContatoUrgencia);
+        Linha(sb, "Convênio Médico", f.ConvenioMedico);
+        Linha(sb, "Esportes já praticados", f.EsportesPraticados);
 
         Secao(sb, "Jiu-Jitsu");
-        Linha(sb, "Ja treinou antes?", f.JaTreinou);
-        Linha(sb, "Graduacao", f.Graduacao);
+        Linha(sb, "Já treinou antes?", f.JaTreinou);
+        Linha(sb, "Graduação", f.Graduacao);
         Linha(sb, "Equipes anteriores", f.EquipesAnteriores);
 
-        Secao(sb, "PAR-Q - Questionario de Prontidao para Atividade Fisica");
-        Linha(sb, "1. Problema cardiaco / prescricao medica", f.ParQ1);
-        Linha(sb, "2. Dor no torax ao praticar atividade", f.ParQ2);
-        Linha(sb, "3. Dor toracica em repouso (ultimo mes)", f.ParQ3);
-        Linha(sb, "4. Tonturas / perda de consciencia", f.ParQ4);
-        Linha(sb, "5. Problema osseo ou articular", f.ParQ5);
-        Linha(sb, "6. Medicamento para pressao/cardiovascular", f.ParQ6);
-        Linha(sb, "7. Outra razao fisica impeditiva", f.ParQ7);
+        Secao(sb, "PAR-Q - Questionário de Prontidão para Atividade Física");
+        Linha(sb, "1. Problema cardíaco / prescrição medica", f.ParQ1);
+        Linha(sb, "2. Dor no tórax ao praticar atividade", f.ParQ2);
+        Linha(sb, "3. Dor torácica em repouso (último mês)", f.ParQ3);
+        Linha(sb, "4. Tonturas / perda de consciência", f.ParQ4);
+        Linha(sb, "5. Problema ósseo ou articular", f.ParQ5);
+        Linha(sb, "6. Medicamento para pressão/cardiovascular", f.ParQ6);
+        Linha(sb, "7. Outra razão física impeditiva", f.ParQ7);
 
-        Secao(sb, "Declaracoes");
-        Linha(sb, "Declaracao de Responsabilidade", f.DeclaracaoResponsabilidade);
+        Secao(sb, "Declarações");
+        Linha(sb, "Declaração de Responsabilidade", f.DeclaracaoResponsabilidade);
 
         if (!string.IsNullOrWhiteSpace(f.ResponsavelNome) ||
             !string.IsNullOrWhiteSpace(f.ResponsavelCpf) ||
             !string.IsNullOrWhiteSpace(f.ResponsavelParentesco))
         {
-            Secao(sb, "Responsavel (menor de 18 anos)");
-            Linha(sb, "Nome do responsavel", f.ResponsavelNome);
-            Linha(sb, "CPF do responsavel", f.ResponsavelCpf);
+            Secao(sb, "Responsável (menor de 18 anos)");
+            Linha(sb, "Nome do responsável", f.ResponsavelNome);
+            Linha(sb, "CPF do responsável", f.ResponsavelCpf);
             Linha(sb, "Grau de parentesco", f.ResponsavelParentesco);
         }
 
@@ -131,12 +138,12 @@ public class EmailService : IEmailService
         {
             Secao(sb, "Termo de Responsabilidade (PAR-Q)");
             Linha(sb, "Nome do participante", f.TermoNomeParticipante);
-            Linha(sb, "Nome do responsavel", f.TermoNomeResponsavel);
+            Linha(sb, "Nome do responsável", f.TermoNomeResponsavel);
         }
 
         sb.Append($"""
                 <p style="margin-top:24px;font-size:12px;color:#888;">
-                  Enviado em {DateTime.Now:dd/MM/yyyy 'as' HH:mm}. A confirmacao facial (selfie) segue em anexo, quando enviada.
+                  Enviado em {DateTime.Now:dd/MM/yyyy 'as' HH:mm}. A confirmação facial (selfie) segue em anexo, quando enviada.
                 </p>
               </div>
             </div>

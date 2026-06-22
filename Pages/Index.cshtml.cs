@@ -48,6 +48,8 @@ public class IndexModel : PageModel
             return Page();
         }
 
+        Form.EnderecoCompleto = Form.MontarEnderecoCompleto();
+
         try
         {
             await _emailService.EnviarMatriculaAsync(Form, cancellationToken);
