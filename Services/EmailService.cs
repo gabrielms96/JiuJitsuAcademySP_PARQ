@@ -1,8 +1,9 @@
-using System.Text;
 using JiuJitsuAcademy.Models;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using MimeKit;
+using System.Text;
+using static System.Collections.Specialized.BitVector32;
 
 namespace JiuJitsuAcademy.Services;
 
@@ -35,7 +36,8 @@ public class EmailService : IEmailService
         message.To.Add(MailboxAddress.Parse(form.Email));
         message.ReplyTo.Add(MailboxAddress.Parse(_settings.FromAddress));
         message.Cc.Add(MailboxAddress.Parse(_settings.FromAddress));
-        message.Subject = $"Dados para aula Introdutoria e PAR-Q - {form.NomeCompleto}";
+        message.Headers.Replace(HeaderId.Subject, Encoding.UTF8, "Your International Subject: áéíóú Üñ");
+        message.Subject = $"Dados para aula Introdutória e PAR-Q - {form.NomeCompleto}";
 
         var builder = new BodyBuilder
         {

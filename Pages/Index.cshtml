@@ -157,7 +157,7 @@
             </div>
             <div class="col-md-6">
                 <label asp-for="Form.ConvenioMedico" class="form-label"></label> <span class="req">*</span>
-                <input asp-for="Form.ConvenioMedico" class="form-control" placeholder="Ex.: Nao / Unimed" />
+                <input asp-for="Form.ConvenioMedico" class="form-control" placeholder="Ex.: Não / Unimed" />
                 <span asp-validation-for="Form.ConvenioMedico" class="text-danger"></span>
             </div>
             <div class="col-md-6">
@@ -183,7 +183,7 @@
         <h2 class="form-card-title">Jiu-Jitsu</h2>
         <div class="row g-3">
             <div class="col-12">
-                <label class="form-label">Ja treinou Jiu-Jitsu antes?</label> <span class="req">*</span>
+                <label class="form-label">Já treinou Jiu-Jitsu antes?</label> <span class="req">*</span>
                 <div class="option-group">
                     @foreach (var op in jaTreinou)
                     {
@@ -197,7 +197,7 @@
             <div class="col-md-6">
                 <label asp-for="Form.Graduacao" class="form-label"></label>
                 <select asp-for="Form.Graduacao" class="form-select">
-                    <option value="">Nao se aplica</option>
+                    <option value="">Não se aplica</option>
                     @foreach (var op in graduacao)
                     {
                         <option value="@op">@op</option>

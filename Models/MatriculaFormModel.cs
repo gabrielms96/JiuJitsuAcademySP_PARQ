@@ -189,7 +189,7 @@ public class MatriculaFormModel
             { "Solteiro(a)", "Casado(a)", "Divorciado(a)", "Viúvo(a)", "União Estável" };
 
         public static readonly string[] JaTreinou =
-            { "Sim", "Nao", "Sim mas faz muito tempo" };
+            { "Sim", "Não", "Sim mas faz muito tempo" };
 
         public static readonly string[] Graduacao =
             { "Branca", "Azul", "Roxa", "Marrom", "Preta", "Graduação Kids (de Cinza a Verde)" };
